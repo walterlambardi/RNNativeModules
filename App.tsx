@@ -17,17 +17,13 @@ const App = () => {
     null,
   );
 
-  const getCurrentLocation = () => {
-    CustomMethod.getDeviceLocation()
-      .then((location: Coordinates) => {
-        console.log('Location:', location);
-        setDeviceLocation(location);
-      })
+  const getCurrentLocation = () =>
+    CustomMethod?.getDeviceLocation()
+      .then((location: Coordinates) => setDeviceLocation(location))
       .catch((error: any) => {
         console.error('Error:', error);
         setDeviceLocation(null);
       });
-  };
 
   const requestLocation = async () => {
     if (Platform.OS === 'android') {
@@ -60,13 +56,16 @@ const App = () => {
   return (
     <SafeAreaView>
       <Text style={styles.title}>React Native App with Native Modules</Text>
-      <View style={styles.dataContainer}>
-        {batteryLevel && <Text>batteryLevel: {batteryLevel}</Text>}
-        {phoneId.length > 0 && <Text>phoneId: {phoneId}</Text>}
-        {deviceLocation && (
-          <Text>deviceLocation: {JSON.stringify(deviceLocation)}</Text>
-        )}
-      </View>
+
+      {(batteryLevel || phoneId.length > 0 || deviceLocation) && (
+        <View style={styles.dataContainer}>
+          {batteryLevel && <Text>Battery Level: {batteryLevel}</Text>}
+          {phoneId.length > 0 && <Text>Phone Id: {phoneId}</Text>}
+          {deviceLocation && (
+            <Text>Device Location: {JSON.stringify(deviceLocation)}</Text>
+          )}
+        </View>
+      )}
 
       <Pressable onPress={handlePress} style={styles.btn}>
         <Text>GET BATTERY LEVEL AND PHONE ID</Text>
