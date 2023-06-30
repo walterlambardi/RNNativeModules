@@ -13,6 +13,7 @@ import CustomMethod, { Coordinates } from './CustomMethod';
 const App = () => {
   const [batteryLevel, setBatteryLevel] = useState<number | null>(null);
   const [phoneId, setPhoneId] = useState<string>('');
+  const [qrCode, setQrCode] = useState<string>('');
   const [deviceLocation, setDeviceLocation] = useState<Coordinates | null>(
     null,
   );
@@ -53,17 +54,26 @@ const App = () => {
     CustomMethod?.getPhoneId(setPhoneId);
   };
 
+  const handlePressScanQR = () =>
+    CustomMethod?.scanQRCode()
+      .then(qrcde => setQrCode(qrcde))
+      .catch(e => console.error('Error', e));
+
   return (
     <SafeAreaView>
       <Text style={styles.title}>React Native App with Native Modules</Text>
 
-      {(batteryLevel || phoneId.length > 0 || deviceLocation) && (
+      {(batteryLevel ||
+        phoneId.length > 0 ||
+        deviceLocation ||
+        qrCode.length > 0) && (
         <View style={styles.dataContainer}>
           {batteryLevel && <Text>Battery Level: {batteryLevel}</Text>}
           {phoneId.length > 0 && <Text>Phone Id: {phoneId}</Text>}
           {deviceLocation && (
             <Text>Device Location: {JSON.stringify(deviceLocation)}</Text>
           )}
+          {qrCode.length > 0 && <Text>QR Scan result: {qrCode}</Text>}
         </View>
       )}
 
@@ -73,6 +83,10 @@ const App = () => {
 
       <Pressable onPress={requestLocation} style={styles.btn}>
         <Text>GET LOCATION</Text>
+      </Pressable>
+
+      <Pressable onPress={handlePressScanQR} style={styles.btn}>
+        <Text>SCAN QR</Text>
       </Pressable>
     </SafeAreaView>
   );

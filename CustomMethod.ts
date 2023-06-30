@@ -15,6 +15,7 @@ interface CustomMethodsProps {
   getBatteryLevel: () => Promise<number>;
   getPhoneId: (callback: (id: string) => void) => void;
   getDeviceLocation: () => Promise<Coordinates>;
+  scanQRCode: () => Promise<string>;
 }
 
 export default CustomMethods as CustomMethodsProps;
