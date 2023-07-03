@@ -8,8 +8,8 @@ import {
   View,
 } from 'react-native';
 import React, { useState } from 'react';
-import CustomMethod, { Coordinates } from './CustomMethod';
-import LocationMethods from './LocationMethods';
+import CustomMethod from './CustomMethod';
+import LocationMethods, { Coordinates } from './LocationMethods';
 
 const App = () => {
   const [batteryLevel, setBatteryLevel] = useState<number | null>(null);

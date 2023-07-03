@@ -13,12 +13,22 @@ The getDeviceLocation method is another common functionality available in both t
 Additionally, the scanQRCode method has been added to the custom packages. This method utilizes the device camera to scan QR codes. When you invoke this method, it will activate the camera and read the QR code, providing the scanned data through a resolved promise.
 
 ```
-    interface CustomMethodsProps {
-      getBatteryLevel: () => Promise<number>;
-      getPhoneId: (callback: (id: string) => void) => void;
-      getDeviceLocation: () => Promise<Coordinates>;
-      scanQRCode: () => Promise<string>;
-    }
+  interface CustomMethodsProps {
+    getBatteryLevel: () => Promise<number>;
+    getPhoneId: (callback: (id: string) => void) => void;
+    scanQRCode: () => Promise<string>;
+  }
+```
+
+```
+  interface Coordinates {
+    latitude: number;
+    longitude: number;
+  }
+
+  interface LocationMethodsProps {
+    getDeviceLocation: () => Promise<Coordinates>;
+  }
 ```
 
 By utilizing these custom packages, you can easily incorporate features like retrieving battery level, device ID, device location, and scanning QR codes into your React Native app. This allows you to access important device-related information seamlessly across both Android and iOS platforms.
