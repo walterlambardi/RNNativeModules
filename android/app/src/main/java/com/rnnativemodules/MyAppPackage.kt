@@ -15,5 +15,5 @@ class MyAppPackage : ReactPackage {
 
     override fun createNativeModules(
         reactContext: ReactApplicationContext
-    ): MutableList<NativeModule> = mutableListOf(CustomMethods(reactContext))
+    ): MutableList<NativeModule> = mutableListOf(CustomMethods(reactContext), LocationMethods(reactContext))
 }

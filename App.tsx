@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import React, { useState } from 'react';
 import CustomMethod, { Coordinates } from './CustomMethod';
+import LocationMethods from './LocationMethods';
 
 const App = () => {
   const [batteryLevel, setBatteryLevel] = useState<number | null>(null);
@@ -19,7 +20,7 @@ const App = () => {
   );
 
   const getCurrentLocation = () =>
-    CustomMethod?.getDeviceLocation()
+    LocationMethods?.getDeviceLocation()
       .then((location: Coordinates) => setDeviceLocation(location))
       .catch((error: any) => {
         console.error('Error:', error);
