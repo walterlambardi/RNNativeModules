@@ -14,8 +14,6 @@ RCT_EXTERN_METHOD(getBatteryLevel:(RCTPromiseResolveBlock)resolve rejecter:(RCTP
 
 RCT_EXTERN_METHOD(getPhoneId:(RCTResponseSenderBlock)callback)
 
-RCT_EXTERN_METHOD(getDeviceLocation:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
-
 RCT_EXTERN_METHOD(scanQRCode:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 
 @end
